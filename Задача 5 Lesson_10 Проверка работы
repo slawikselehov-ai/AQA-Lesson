@@ -1,0 +1,32 @@
+public class Main {
+    public static void main(String[] args) {
+
+        // коробки
+        Box<Apple> appleBox1 = new Box<>();
+        Box<Apple> appleBox2 = new Box<>();
+        Box<Orange> orangeBox = new Box<>();
+
+        // добавляем фрукты
+        appleBox1.addFruit(new Apple());
+        appleBox1.addFruit(new Apple());
+
+        appleBox2.addFruit(new Apple());
+
+        orangeBox.addFruit(new Orange());
+        orangeBox.addFruit(new Orange());
+
+        // вес
+        System.out.println("Вес appleBox1: " + appleBox1.getWeight());
+        System.out.println("Вес orangeBox: " + orangeBox.getWeight());
+
+        // сравнение
+        System.out.println("Сравнение коробок: " + appleBox1.compare(orangeBox));
+
+        // пересыпание
+        System.out.println("\nПересыпаем яблоки...");
+        appleBox1.transferTo(appleBox2);
+
+        System.out.println("appleBox1 теперь содержит: " + appleBox1.getSize());
+        System.out.println("appleBox2 теперь содержит: " + appleBox2.getSize());
+    }
+}
