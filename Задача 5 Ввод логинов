@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class Task5 {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        List<String> logins = new ArrayList<>();
+
+        System.out.println("Введите логины (пустая строка для выхода):");
+
+        while (true) {
+            String input = scanner.nextLine();
+
+            if (input.isEmpty()) {
+                break;
+            }
+
+            logins.add(input);
+        }
+
+        System.out.println("\nЛогины на 'f':");
+
+        for (String login : logins) {
+            if (login.startsWith("f")) {
+                System.out.println(login);
+            }
+        }
+    }
+}
