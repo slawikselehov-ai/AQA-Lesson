@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+
+public class Box<T extends Fruit> {
+
+    private ArrayList<T> fruits = new ArrayList<>();
+
+    // добавить фрукт
+    public void addFruit(T fruit) {
+        fruits.add(fruit);
+    }
+
+    // получить вес коробки
+    public float getWeight() {
+        float totalWeight = 0f;
+
+        for (T fruit : fruits) {
+            totalWeight += fruit.getWeight();
+        }
+
+        return totalWeight;
+    }
+
+    // сравнение коробок
+    public boolean compare(Box<?> otherBox) {
+        return Math.abs(this.getWeight() - otherBox.getWeight()) < 0.0001;
+    }
+
+    // пересыпать фрукты
+    public void transferTo(Box<T> otherBox) {
+        if (this == otherBox) {
+            return; // защита от пересыпания в себя
+        }
+
+        otherBox.fruits.addAll(this.fruits);
+        this.fruits.clear();
+    }
+
+    // для удобства
+    public int getSize() {
+        return fruits.size();
+    }
+}
