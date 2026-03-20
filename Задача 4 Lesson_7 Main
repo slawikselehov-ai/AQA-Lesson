@@ -1,0 +1,43 @@
+public class Main {
+    public static void main(String[] args) {
+
+        // корректный массив
+        String[][] goodArray = {
+                {"1", "2", "3", "4"},
+                {"5", "6", "7", "8"},
+                {"9", "10", "11", "12"},
+                {"13", "14", "15", "16"}
+        };
+
+        // массив с ошибкой данных
+        String[][] badDataArray = {
+                {"1", "2", "3", "4"},
+                {"5", "x", "7", "8"}, // ошибка
+                {"9", "10", "11", "12"},
+                {"13", "14", "15", "16"}
+        };
+
+        // массив неправильного размера
+        String[][] badSizeArray = {
+                {"1", "2"},
+                {"3", "4"}
+        };
+
+        testArray(goodArray);
+        testArray(badDataArray);
+        testArray(badSizeArray);
+    }
+
+    public static void testArray(String[][] array) {
+        try {
+            int result = ArrayUtils.sumArray(array);
+            System.out.println("Сумма: " + result);
+        } catch (MyArraySizeException e) {
+            System.out.println("Ошибка размера: " + e.getMessage());
+        } catch (MyArrayDataException e) {
+            System.out.println("Ошибка данных: " + e.getMessage());
+        }
+
+        System.out.println("------------------------");
+    }
+}
