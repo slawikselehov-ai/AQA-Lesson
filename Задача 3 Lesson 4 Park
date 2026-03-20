@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Park {
+
+    private List<Attraction> attractions = new ArrayList<>();
+
+    // внутренний класс
+    public class Attraction {
+        private String name;
+        private String workingHours;
+        private int price;
+
+        public Attraction(String name, String workingHours, int price) {
+            this.name = name;
+            this.workingHours = workingHours;
+            this.price = price;
+        }
+
+        public void printInfo() {
+            System.out.println("Аттракцион: " + name);
+            System.out.println("Время работы: " + workingHours);
+            System.out.println("Стоимость: " + price);
+            System.out.println("------------------------");
+        }
+    }
+
+    public void addAttraction(String name, String workingHours, int price) {
+        attractions.add(new Attraction(name, workingHours, price));
+    }
+
+    public void printAll() {
+        for (Attraction a : attractions) {
+            a.printInfo();
+        }
+    }
+}
+
+public class MainPark {
+    public static void main(String[] args) {
+
+        Park park = new Park();
+
+        park.addAttraction("Американские горки", "10:00-22:00", 500);
+        park.addAttraction("Колесо обозрения", "09:00-21:00", 300);
+        park.addAttraction("Комната страха", "12:00-23:00", 400);
+
+        park.printAll();
+    }
+}
