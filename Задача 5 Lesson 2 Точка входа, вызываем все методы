@@ -1,0 +1,14 @@
+// 5. Точка входа, вызываем все методы
+public static void main(String[] args) {
+    System.out.println("--- Задача 1 ---");
+    printThreeWords();
+
+    System.out.println("\n--- Задача 2 ---");
+    checkSumSign();
+
+    System.out.println("\n--- Задача 3 ---");
+    printColor();
+
+    System.out.println("\n--- Задача 4 ---");
+    compareNumbers();
+}
