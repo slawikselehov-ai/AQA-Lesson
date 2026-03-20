@@ -1,0 +1,12 @@
+// 2. Проверить знак суммы двух чисел
+public static void checkSumSign() {
+    int a = 5; // Любые значения
+    int b = -10;
+    int sum = a + b;
+
+    if (sum >= 0) {
+        System.out.println("Сумма положительная");
+    } else {
+        System.out.println("Сумма отрицательная");
+    }
+}
