@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class PhoneBook {
+
+    private Map<String, List<String>> phoneBook = new HashMap<>();
+
+    // добавление
+    public void add(String lastName, String phoneNumber) {
+
+        if (!phoneBook.containsKey(lastName)) {
+            phoneBook.put(lastName, new ArrayList<>());
+        }
+
+        phoneBook.get(lastName).add(phoneNumber);
+    }
+
+    // получение
+    public List<String> get(String lastName) {
+        if (phoneBook.containsKey(lastName)) {
+            return phoneBook.get(lastName);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+}
