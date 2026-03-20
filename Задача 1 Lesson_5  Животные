@@ -1,0 +1,177 @@
+Animal.java
+public abstract class Animal {
+protected String name;
+protected static int countAnimal = 0;
+
+public Animal(String name) {
+    this.name = name;
+    countAnimal++;
+}
+
+public abstract void run(int distance);
+public abstract void swim(int distance);
+
+public static int getCountAnimal() {
+    return countAnimal;
+}
+}
+Cat.java
+public class Cat extends Animal {
+private static int countCat = 0;
+private boolean isFull = false;
+
+public Cat(String name) {
+    super(name);
+    countCat++;
+}
+
+@Override
+public void run(int distance) {
+    if (distance <= 200) {
+        System.out.println(name + " пробежал " + distance + " м.");
+    } else {
+        System.out.println(name + " не может пробежать " + distance + " м.");
+    }
+}
+
+@Override
+public void swim(int distance) {
+    System.out.println(name + " не умеет плавать.");
+}
+
+public void eat(Plate plate) {
+    int appetite = 10; // сколько ест кот
+    if (!isFull && plate.getFood() >= appetite) {
+        plate.decreaseFood(appetite);
+        isFull = true;
+        System.out.println(name + " поел.");
+    } else {
+        System.out.println(name + " не поел.");
+    }
+}
+
+public boolean isFull() {
+    return isFull;
+}
+
+public static int getCountCat() {
+    return countCat;
+}
+}
+Dog.java
+public class Dog extends Animal {
+private static int countDog = 0;
+
+public Dog(String name) {
+    super(name);
+    countDog++;
+}
+
+@Override
+public void run(int distance) {
+    if (distance <= 500) {
+        System.out.println(name + " пробежал " + distance + " м.");
+    } else {
+        System.out.println(name + " не может пробежать " + distance + " м.");
+    }
+}
+
+@Override
+public void swim(int distance) {
+    if (distance <= 10) {
+        System.out.println(name + " проплыл " + distance + " м.");
+    } else {
+        System.out.println(name + " не может проплыть " + distance + " м.");
+    }
+}
+
+public static int getCountDog() {
+    return countDog;
+}
+}
+Plate.java
+public class Plate {
+private int food;
+
+public Plate(int food) {
+    this.food = food;
+}
+
+public int getFood() {
+    return food;
+}
+
+public void decreaseFood(int amount) {
+    if (food >= amount) {
+        food -= amount;
+    }
+}
+
+public void addFood(int amount) {
+    food += amount;
+    System.out.println("Добавили еды: " + amount);
+}
+
+public void info() {
+    System.out.println("В тарелке осталось: " + food);
+}
+}
+Main.java
+public class Main {
+public static void main(String[] args) {
+
+    Dog bobik = new Dog("Бобик");
+    Cat barsik = new Cat("Барсик");
+    Cat murzik = new Cat("Мурзик");
+
+    // Проверка бега и плавания
+    bobik.run(150);
+    bobik.swim(5);
+
+    barsik.run(100);
+    barsik.swim(5);
+
+    // Тарелка с едой
+    Plate plate = new Plate(15);
+    plate.info();
+
+    // Массив котов
+    Cat[] cats = {barsik, murzik};
+
+    // Коты едят
+    for (Cat cat : cats) {
+        cat.eat(plate);
+    }
+
+    plate.info();
+
+    // Проверка сытости
+    System.out.println("\nСытость котов:");
+    for (Cat cat : cats) {
+        System.out.println(cat.name + ": " + (cat.isFull() ? "сыт" : "голоден"));
+    }
+
+    // Добавим еды
+    System.out.println("\nДобавляем еду...");
+    plate.addFood(20);
+    plate.info();
+
+    // Кормим ещё раз
+    for (Cat cat : cats) {
+        if (!cat.isFull()) {
+            cat.eat(plate);
+        }
+    }
+
+    // Итог
+    System.out.println("\nИтоговая сытость:");
+    for (Cat cat : cats) {
+        System.out.println(cat.name + ": " + (cat.isFull() ? "сыт" : "голоден"));
+    }
+
+    System.out.println("\nСтатистика:");
+    System.out.println("Животных: " + Animal.getCountAnimal());
+    System.out.println("Котов: " + Cat.getCountCat());
+    System.out.println("Собак: " + Dog.getCountDog());
+}
+}
